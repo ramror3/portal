@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Portal</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li class="active"><%= link_to 'Site', root_path %></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <% if user_signed_in? %>
+        <li><%= link_to "NewPost", new_post_path %></li>
+        <li><%= link_to "SignOut", destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-in" %></li>
+      <% else %>
+        <li><%= link_to "SignUp", new_user_registration_path, class: "glyphicon glyphicon-user" %></li>
+        <li><%= link_to "LogIn", new_user_session_path, class: "glyphicon glyphicon-log-in" %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+    <%= yield %>
+
+  </body>
+</html>
